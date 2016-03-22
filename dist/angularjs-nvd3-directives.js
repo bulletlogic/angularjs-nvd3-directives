@@ -2169,11 +2169,17 @@
                     return d.y;
                   } : scope.y() ).size( attrs.size === undefined ? function ( d ) {
                     return d.size === undefined ? 1 : d.size;
-                  } : scope.size() ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).tooltipContent( attrs.tooltipContent === undefined ? null : scope.tooltipContent() ).tooltipXContent( attrs.tooltipxcontent === undefined ? function ( key, x ) {
-                    return '<strong>' + x + '</strong>';
-                  } : scope.tooltipXContent() ).tooltipYContent( attrs.tooltipycontent === undefined ? function ( key, x, y ) {
-                    return '<strong>' + y + '</strong>';
-                  } : scope.tooltipYContent() ).showControls( attrs.showcontrols === undefined ? false : attrs.showcontrols === 'true' ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).showDistX( attrs.showdistx === undefined ? false : attrs.showdistx === 'true' ).showDistY( attrs.showdisty === undefined ? false : attrs.showdisty === 'true' ).fisheye( attrs.fisheye === undefined ? 0 : +attrs.fisheye ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() ).transitionDuration( attrs.transitionduration === undefined ? 250 : +attrs.transitionduration );
+                  } : scope.size() ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).showControls( attrs.showcontrols === undefined ? false : attrs.showcontrols === 'true' ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).showDistX( attrs.showdistx === undefined ? false : attrs.showdistx === 'true' ).showDistY( attrs.showdisty === undefined ? false : attrs.showdisty === 'true' ).fisheye( attrs.fisheye === undefined ? 0 : +attrs.fisheye ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() ).transitionDuration( attrs.transitionduration === undefined ? 250 : +attrs.transitionduration );
+                  if ( attrs.tooltips === undefined || attrs.tooltips !== 'true' ) {
+                    chart.tooltip.enabled( false );
+                  } else {
+                    var tooltip = chart.tooltip;
+                    tooltip.contentGenerator( attrs.tooltipContent === undefined ? null : scope.tooltipContent() ).keyFormatter( attrs.tooltipxcontent === undefined ? function ( key, x ) {
+                      return '<strong>' + x + '</strong>';
+                    } : scope.tooltipXContent() ).valueFormatter( attrs.tooltipycontent === undefined ? function ( key, x, y ) {
+                      return '<strong>' + y + '</strong>';
+                    } : scope.tooltipYContent() );
+                  }
                   if ( attrs.shape ) {
                     chart.scatter.onlyCircles( false );
                     chart.scatter.shape( attrs.shape === undefined ? function ( d ) {
