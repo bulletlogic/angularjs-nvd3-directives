@@ -1071,7 +1071,7 @@
                     chart.useInteractiveGuideline( attrs.useinteractiveguideline === undefined ? false : attrs.useinteractiveguideline === 'true' );
                   }
                   if ( attrs.tooltipcontent ) {
-                    chart.tooltipContent( scope.tooltipcontent() );
+                    chart.contentGenerator( scope.tooltipcontent );
                   }
                   scope.d3Call( data, chart );
                   nv.utils.windowResize( chart.update );
