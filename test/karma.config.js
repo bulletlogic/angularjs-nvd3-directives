@@ -15,13 +15,12 @@ module.exports = function(config) {
     files: [
       '../build/components/moment/moment.js',
       '../build/components/d3/d3.js',
-      '../build/components/nvd3/nv.d3.js',
+      '../build/components/nvd3/build/nv.d3.js',
       '../build/components/angular/angular.js',
       '../build/components/angular-route/angular-route.js',
       '../build/components/angular-mocks/angular-mocks.js',
-      //'../dist/angularjs-nvd3-directives.js',
       '../src/directives/*.js',
-      '**/*Spec.js'
+      './spec/**/*.js'
     ],
 
     // list of files to exclude
@@ -58,7 +57,7 @@ module.exports = function(config) {
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     //browsers: ['Chrome', 'Firefox', 'PhantomJS'],
-    browsers: ['PhantomJS'],
+    browsers: ['PhantomJS2'],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits

@@ -188,7 +188,6 @@
                                         .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex)) // List of numbers to Force into the X scale (ie. 0, or a max / min, etc.)
                                         .forceY(attrs.forcey === undefined ? [0] : scope.$eval(attrs.forcey)) // List of numbers to Force into the Y scale
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .showXAxis(attrs.showxaxis === undefined ? false : (attrs.showxaxis  === 'true'))
                                         .showYAxis(attrs.showyaxis === undefined ? false : (attrs.showyaxis  === 'true'))
                                         .rightAlignYAxis(attrs.rightalignyaxis === undefined ? false : (attrs.rightalignyaxis  === 'true'))
@@ -204,8 +203,11 @@
                                         chart.useInteractiveGuideline(attrs.useinteractiveguideline === undefined ? false : (attrs.useinteractiveguideline === 'true'));
                                     }
 
-                                    if(attrs.tooltipcontent){
-                                        chart.contentGenerator(scope.tooltipcontent);
+                                    if(attrs.tooltips === undefined || attrs.tooltips  !== 'true'){
+                                        chart.tooltip.enabled(false);
+                                    }else{
+                                        var tooltip = chart.tooltip;
+                                        tooltip.contentGenerator(attrs.tooltipContent === undefined ? null : scope.tooltipContent());
                                     }
 
                                     scope.d3Call(data, chart);
@@ -1392,10 +1394,6 @@
                                         .forceY(attrs.forcey === undefined ? [] : scope.$eval(attrs.forcey))
                                         .forceSize(attrs.forcesize === undefined ? [] : scope.$eval(attrs.forcesize))
                                         .interactive(attrs.interactive === undefined ? false : (attrs.interactive === 'true'))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
-                                        .tooltipContent(attrs.tooltipContent === undefined ? null : scope.tooltipContent())
-                                        .tooltipXContent(attrs.tooltipxcontent === undefined ? function(key, x) { return '<strong>' + x + '</strong>'; } : scope.tooltipXContent())
-                                        .tooltipYContent(attrs.tooltipycontent === undefined ? function(key, x, y) { return '<strong>' + y + '</strong>'; } : scope.tooltipYContent())
                                         .showControls(attrs.showcontrols === undefined ? false : (attrs.showcontrols === 'true'))
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
                                         .showDistX(attrs.showdistx === undefined ? false : (attrs.showdistx === 'true'))
@@ -1410,6 +1408,16 @@
                                     if(attrs.shape){
                                         chart.scatter.onlyCircles(false);
                                         chart.scatter.shape(attrs.shape === undefined ? function(d) { return d.shape || 'circle'; } : scope.shape());
+                                    }
+
+                                    if(attrs.tooltips === undefined || attrs.tooltips  !== 'true'){
+                                        chart.tooltip.enabled(false);
+                                    }else{
+                                        var tooltip = chart.tooltip;
+                                        tooltip
+                                          .contentGenerator(attrs.tooltipContent === undefined ? null : scope.tooltipContent())
+                                          .keyFormatter(attrs.tooltipxcontent === undefined ? function(key, x) { return '<strong>' + x + '</strong>'; } : scope.tooltipXContent())
+                                          .valueFormatter(attrs.tooltipycontent === undefined ? function(key, x, y) { return '<strong>' + y + '</strong>'; } : scope.tooltipYContent());
                                     }
 
     //'pointActive', 'clipVoronoi', 'clipRadius', 'useVoronoi'
@@ -1766,7 +1774,6 @@
                                         .x(attrs.x === undefined ? function(d){ return d[0]; } : scope.x())
                                         .y(attrs.y === undefined ? function(d){ return d[1]; } : scope.y())
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .interpolate(attrs.interpolate === undefined ? 'linear' : attrs.interpolate)
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color());
@@ -1781,8 +1788,14 @@
                                         chart.bars.forceY(scope.$eval(attrs.forcey));
                                     }
 
-                                    if(attrs.tooltipcontent){
-                                        chart.tooltipContent(scope.tooltipcontent());
+                                    if(attrs.tooltips === undefined || attrs.tooltips  !== 'true'){
+                                        chart.tooltip.enabled(false);
+                                    }else{
+                                        var tooltip = chart.tooltip;
+                                        tooltip
+                                          .contentGenerator(attrs.tooltipContent === undefined ? null : scope.tooltipContent())
+                                          .keyFormatter(attrs.tooltipxcontent === undefined ? function(key, x) { return '<strong>' + x + '</strong>'; } : scope.tooltipXContent())
+                                          .valueFormatter(attrs.tooltipycontent === undefined ? function(key, x, y) { return '<strong>' + y + '</strong>'; } : scope.tooltipYContent());
                                     }
 
                                     if ( attrs.lineinteractive && attrs.lineinteractive === 'false') {
@@ -1990,7 +2003,6 @@
                                         .forceX(attrs.forcex === undefined ? [] : scope.$eval(attrs.forcex))
                                         .forceY(attrs.forcey === undefined ? [] : scope.$eval(attrs.forcey))
                                         .showLegend(attrs.showlegend === undefined ? false : (attrs.showlegend === 'true'))
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata)
                                         .color(attrs.color === undefined ? nv.utils.defaultColor()  : scope.color())
                                         .isArea(attrs.isarea === undefined ? function(d) { return d.area; } : function(){ return (attrs.isarea === 'true'); })
@@ -2004,8 +2016,14 @@
                                         chart.defined(scope.defined());
                                     }
 
-                                    if(attrs.tooltipcontent){
-                                        chart.tooltipContent(scope.tooltipcontent());
+                                    if(attrs.tooltips === undefined || attrs.tooltips  !== 'true'){
+                                        chart.tooltip.enabled(false);
+                                    }else{
+                                        var tooltip = chart.tooltip;
+                                        tooltip
+                                          .contentGenerator(attrs.tooltipContent === undefined ? null : scope.tooltipContent())
+                                          .keyFormatter(attrs.tooltipxcontent === undefined ? function(key, x) { return '<strong>' + x + '</strong>'; } : scope.tooltipXContent())
+                                          .valueFormatter(attrs.tooltipycontent === undefined ? function(key, x, y) { return '<strong>' + y + '</strong>'; } : scope.tooltipYContent());
                                     }
 
                                     scope.d3Call(data, chart);
@@ -2074,15 +2092,17 @@
                                         .height(scope.height)
                                         .margin(scope.margin)
                                         .orient(attrs.orient === undefined ? 'left' : attrs.orient)
-    //                                    .ranges(attrs.ranges === undefined ? function(d){ return d.ranges; } : scope.ranges())
-    //                                    .markers(attrs.markers === undefined ? function(d){ return d.markers; } : scope.markers())
-    //                                    .measures(attrs.measures === undefined ? function(d){ return d.measures; } : scope.measures())
                                         .tickFormat(attrs.tickformat === undefined ? null : scope.tickformat())
-                                        .tooltips(attrs.tooltips === undefined ? false : (attrs.tooltips  === 'true'))
                                         .noData(attrs.nodata === undefined ? 'No Data Available.' : scope.nodata);
 
-                                    if(attrs.tooltipcontent){
-                                        chart.tooltipContent(scope.tooltipcontent());
+                                    if(attrs.tooltips === undefined || attrs.tooltips  !== 'true'){
+                                        chart.tooltip.enabled(false);
+                                    }else{
+                                        var tooltip = chart.tooltip;
+                                        tooltip
+                                          .contentGenerator(attrs.tooltipContent === undefined ? null : scope.tooltipContent())
+                                          .keyFormatter(attrs.tooltipxcontent === undefined ? function(key, x) { return '<strong>' + x + '</strong>'; } : scope.tooltipXContent())
+                                          .valueFormatter(attrs.tooltipycontent === undefined ? function(key, x, y) { return '<strong>' + y + '</strong>'; } : scope.tooltipYContent());
                                     }
 
                                     scope.d3Call(data, chart);
