@@ -205,7 +205,7 @@
                                     }
 
                                     if(attrs.tooltipcontent){
-                                        chart.tooltipContent(scope.tooltipcontent());
+                                        chart.contentGenerator(scope.tooltipcontent);
                                     }
 
                                     scope.d3Call(data, chart);
