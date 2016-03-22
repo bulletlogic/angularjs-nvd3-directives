@@ -932,7 +932,7 @@
                     chart.tooltip.enabled( false );
                   } else {
                     var tooltip = chart.tooltip;
-                    tooltip.contentGenerator( attrs.tooltipContent === undefined ? null : scope.tooltipContent() );
+                    tooltip.contentGenerator( attrs.tooltipContent === undefined ? null : scope.tooltipContent );
                   }
                   scope.d3Call( data, chart );
                   nv.utils.windowResize( chart.update );
@@ -1210,7 +1210,7 @@
                     return d[ 1 ];
                   } : scope.y() ).forceX( attrs.forcex === undefined ? [] : scope.$eval( attrs.forcex ) ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).size( attrs.size === undefined ? function ( d ) {
                     return d.size === undefined ? 1 : d.size;
-                  } : scope.size() ).forceSize( attrs.forcesize === undefined ? [] : scope.$eval( attrs.forcesize ) ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).showControls( attrs.showcontrols === undefined ? false : attrs.showcontrols === 'true' ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).clipEdge( attrs.clipedge === undefined ? false : attrs.clipedge === 'true' ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() );
+                  } : scope.size() ).forceSize( attrs.forcesize === undefined ? [] : scope.$eval( attrs.forcesize ) ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).showControls( attrs.showcontrols === undefined ? false : attrs.showcontrols === 'true' ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).clipEdge( attrs.clipedge === undefined ? false : attrs.clipedge === 'true' ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() );
                   if ( attrs.useinteractiveguideline ) {
                     chart.useInteractiveGuideline( attrs.useinteractiveguideline === undefined ? false : attrs.useinteractiveguideline === 'true' );
                   }
@@ -1377,9 +1377,11 @@
                     return d[ 0 ];
                   } : scope.x() ).y( attrs.y === undefined ? function ( d ) {
                     return d[ 1 ];
-                  } : scope.y() ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).showControls( attrs.showcontrols === undefined ? false : attrs.showcontrols === 'true' ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).reduceXTicks( attrs.reducexticks === undefined ? false : attrs.reducexticks === 'true' ).staggerLabels( attrs.staggerlabels === undefined ? false : attrs.staggerlabels === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).rotateLabels( attrs.rotatelabels === undefined ? 0 : attrs.rotatelabels ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() ).delay( attrs.delay === undefined ? 1200 : attrs.delay ).stacked( attrs.stacked === undefined ? false : attrs.stacked === 'true' );
+                  } : scope.y() ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).showControls( attrs.showcontrols === undefined ? false : attrs.showcontrols === 'true' ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).reduceXTicks( attrs.reducexticks === undefined ? false : attrs.reducexticks === 'true' ).staggerLabels( attrs.staggerlabels === undefined ? false : attrs.staggerlabels === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).rotateLabels( attrs.rotatelabels === undefined ? 0 : attrs.rotatelabels ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() ).delay( attrs.delay === undefined ? 1200 : attrs.delay ).stacked( attrs.stacked === undefined ? false : attrs.stacked === 'true' );
                   if ( attrs.tooltipcontent ) {
-                    chart.tooltipContent( scope.tooltipcontent() );
+                    chart.tooltip.contentGenerator( scope.tooltipcontent );
+                  } else {
+                    chart.tooltip.enable( false );
                   }
                   scope.d3Call( data, chart );
                   nv.utils.windowResize( chart.update );
@@ -1499,9 +1501,11 @@
                     return d[ 0 ];
                   } : scope.x() ).y( attrs.y === undefined ? function ( d ) {
                     return d[ 1 ];
-                  } : scope.y() ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).showValues( attrs.showvalues === undefined ? false : attrs.showvalues === 'true' ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).staggerLabels( attrs.staggerlabels === undefined ? false : attrs.staggerlabels === 'true' ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() );
+                  } : scope.y() ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).showValues( attrs.showvalues === undefined ? false : attrs.showvalues === 'true' ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).staggerLabels( attrs.staggerlabels === undefined ? false : attrs.staggerlabels === 'true' ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() );
                   if ( attrs.tooltipcontent ) {
-                    chart.tooltipContent( scope.tooltipcontent() );
+                    chart.tooltip.contentGenerator( scope.tooltipcontent );
+                  } else {
+                    chart.tooltip.enable( false );
                   }
                   if ( attrs.valueformat ) {
                     chart.valueFormat( scope.valueformat() );
@@ -1627,12 +1631,14 @@
                     return d[ 0 ];
                   } : scope.x() ).y( attrs.y === undefined ? function ( d ) {
                     return d[ 1 ];
-                  } : scope.y() ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() );
+                  } : scope.y() ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).interactive( attrs.interactive === undefined ? false : attrs.interactive === 'true' ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() );
                   if ( attrs.useinteractiveguideline ) {
                     chart.useInteractiveGuideline( attrs.useinteractiveguideline === undefined ? false : attrs.useinteractiveguideline === 'true' );
                   }
                   if ( attrs.tooltipcontent ) {
-                    chart.tooltipContent( scope.tooltipcontent() );
+                    chart.tooltip.contentGenerator( scope.tooltipcontent );
+                  } else {
+                    chart.tooltip.enable( false );
                   }
                   if ( attrs.valueformat ) {
                     chart.valueFormat( scope.valueformat() );
@@ -1755,9 +1761,11 @@
                     return d[ 0 ];
                   } : scope.x() ).y( attrs.y === undefined ? function ( d ) {
                     return d[ 1 ];
-                  } : scope.y() ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).showControls( attrs.showcontrols === undefined ? false : attrs.showcontrols === 'true' ).showValues( attrs.showvalues === undefined ? false : attrs.showvalues === 'true' ).stacked( attrs.stacked === undefined ? false : attrs.stacked === 'true' );
+                  } : scope.y() ).showXAxis( attrs.showxaxis === undefined ? false : attrs.showxaxis === 'true' ).showYAxis( attrs.showyaxis === undefined ? false : attrs.showyaxis === 'true' ).forceY( attrs.forcey === undefined ? [ 0 ] : scope.$eval( attrs.forcey ) ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).showControls( attrs.showcontrols === undefined ? false : attrs.showcontrols === 'true' ).showValues( attrs.showvalues === undefined ? false : attrs.showvalues === 'true' ).stacked( attrs.stacked === undefined ? false : attrs.stacked === 'true' );
                   if ( attrs.tooltipcontent ) {
-                    chart.tooltipContent( scope.tooltipcontent() );
+                    chart.tooltip.contentGenerator( scope.tooltipcontent );
+                  } else {
+                    chart.tooltip.enable( false );
                   }
                   if ( attrs.valueformat ) {
                     chart.valueFormat( scope.valueformat() );
@@ -1846,11 +1854,13 @@
                     return d[ 0 ];
                   } : scope.x() ).y( attrs.y === undefined ? function ( d ) {
                     return d[ 1 ];
-                  } : scope.y() ).width( scope.width ).height( scope.height ).margin( scope.margin ).tooltips( attrs.tooltips === undefined ? false : attrs.tooltips === 'true' ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).showLabels( attrs.showlabels === undefined ? false : attrs.showlabels === 'true' ).labelThreshold( attrs.labelthreshold === undefined ? 0.02 : attrs.labelthreshold ).labelType( attrs.labeltype === undefined ? 'key' : attrs.labeltype ).pieLabelsOutside( attrs.pielabelsoutside === undefined ? true : attrs.pielabelsoutside === 'true' ).valueFormat( attrs.valueformat === undefined ? d3.format( ',.2f' ) : attrs.valueformat ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).description( attrs.description === undefined ? function ( d ) {
+                  } : scope.y() ).width( scope.width ).height( scope.height ).margin( scope.margin ).noData( attrs.nodata === undefined ? 'No Data Available.' : scope.nodata ).showLabels( attrs.showlabels === undefined ? false : attrs.showlabels === 'true' ).labelThreshold( attrs.labelthreshold === undefined ? 0.02 : attrs.labelthreshold ).labelType( attrs.labeltype === undefined ? 'key' : attrs.labeltype ).pieLabelsOutside( attrs.pielabelsoutside === undefined ? true : attrs.pielabelsoutside === 'true' ).valueFormat( attrs.valueformat === undefined ? d3.format( ',.2f' ) : attrs.valueformat ).showLegend( attrs.showlegend === undefined ? false : attrs.showlegend === 'true' ).description( attrs.description === undefined ? function ( d ) {
                     return d.description;
                   } : scope.description() ).color( attrs.color === undefined ? nv.utils.defaultColor() : scope.color() ).donutLabelsOutside( attrs.donutlabelsoutside === undefined ? false : attrs.donutlabelsoutside === 'true' ).donut( attrs.donut === undefined ? false : attrs.donut === 'true' ).donutRatio( attrs.donutratio === undefined ? 0.5 : attrs.donutratio );
                   if ( attrs.tooltipcontent ) {
-                    chart.tooltipContent( scope.tooltipcontent() );
+                    chart.tooltip.contentGenerator( scope.tooltipcontent );
+                  } else {
+                    chart.tooltip.enable( false );
                   }
                   scope.d3Call( data, chart );
                   nv.utils.windowResize( chart.update );
@@ -2004,7 +2014,7 @@
                     chart.tooltip.enabled( false );
                   } else {
                     var tooltip = chart.tooltip;
-                    tooltip.contentGenerator( attrs.tooltipContent === undefined ? null : scope.tooltipContent() ).keyFormatter( attrs.tooltipxcontent === undefined ? function ( key, x ) {
+                    tooltip.contentGenerator( attrs.tooltipContent === undefined ? null : scope.tooltipContent ).keyFormatter( attrs.tooltipxcontent === undefined ? function ( key, x ) {
                       return '<strong>' + x + '</strong>';
                     } : scope.tooltipXContent() ).valueFormatter( attrs.tooltipycontent === undefined ? function ( key, x, y ) {
                       return '<strong>' + y + '</strong>';
@@ -2183,7 +2193,7 @@
                     chart.tooltip.enabled( false );
                   } else {
                     var tooltip = chart.tooltip;
-                    tooltip.contentGenerator( attrs.tooltipContent === undefined ? null : scope.tooltipContent() ).keyFormatter( attrs.tooltipxcontent === undefined ? function ( key, x ) {
+                    tooltip.contentGenerator( attrs.tooltipContent === undefined ? null : scope.tooltipContent ).keyFormatter( attrs.tooltipxcontent === undefined ? function ( key, x ) {
                       return '<strong>' + x + '</strong>';
                     } : scope.tooltipXContent() ).valueFormatter( attrs.tooltipycontent === undefined ? function ( key, x, y ) {
                       return '<strong>' + y + '</strong>';
@@ -2351,7 +2361,7 @@
                     chart.tooltip.enabled( false );
                   } else {
                     var tooltip = chart.tooltip;
-                    tooltip.contentGenerator( attrs.tooltipContent === undefined ? null : scope.tooltipContent() ).keyFormatter( attrs.tooltipxcontent === undefined ? function ( key, x ) {
+                    tooltip.contentGenerator( attrs.tooltipContent === undefined ? null : scope.tooltipContent ).keyFormatter( attrs.tooltipxcontent === undefined ? function ( key, x ) {
                       return '<strong>' + x + '</strong>';
                     } : scope.tooltipXContent() ).valueFormatter( attrs.tooltipycontent === undefined ? function ( key, x, y ) {
                       return '<strong>' + y + '</strong>';
@@ -2568,7 +2578,7 @@
                     chart.tooltip.enabled( false );
                   } else {
                     var tooltip = chart.tooltip;
-                    tooltip.contentGenerator( attrs.tooltipContent === undefined ? null : scope.tooltipContent() ).keyFormatter( attrs.tooltipxcontent === undefined ? function ( key, x ) {
+                    tooltip.contentGenerator( attrs.tooltipContent === undefined ? null : scope.tooltipContent ).keyFormatter( attrs.tooltipxcontent === undefined ? function ( key, x ) {
                       return '<strong>' + x + '</strong>';
                     } : scope.tooltipXContent() ).valueFormatter( attrs.tooltipycontent === undefined ? function ( key, x, y ) {
                       return '<strong>' + y + '</strong>';
@@ -2642,7 +2652,7 @@
                     chart.tooltip.enabled( false );
                   } else {
                     var tooltip = chart.tooltip;
-                    tooltip.contentGenerator( attrs.tooltipContent === undefined ? null : scope.tooltipContent() ).keyFormatter( attrs.tooltipxcontent === undefined ? function ( key, x ) {
+                    tooltip.contentGenerator( attrs.tooltipContent === undefined ? null : scope.tooltipContent ).keyFormatter( attrs.tooltipxcontent === undefined ? function ( key, x ) {
                       return '<strong>' + x + '</strong>';
                     } : scope.tooltipXContent() ).valueFormatter( attrs.tooltipycontent === undefined ? function ( key, x, y ) {
                       return '<strong>' + y + '</strong>';
